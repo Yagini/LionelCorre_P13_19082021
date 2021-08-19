@@ -1,9 +1,11 @@
 import React from "react";
 import "./Homepage.css";
 
+import { featuresData } from "../../localData/featuresData";
+
 import Features from "../../components/Features/Features";
 
-import { featuresData } from "../../localData/featuresData";
+
 
 function Homepage() {
   return (
