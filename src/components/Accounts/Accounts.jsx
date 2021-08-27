@@ -12,7 +12,6 @@ function Accounts({ title, amount, text }) {
       <div classname="account-content-wrapper">
         <button className="transaction-button">View transactions</button>
       </div>
-    
     </section>
   );
 }

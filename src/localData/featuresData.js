@@ -1,7 +1,7 @@
 export const featuresData = [
   {
     id: "f-01",
-    src: "../../assets/icon-chat.png",
+    src: "../assets/icon-chat.png",
     alt: "Chat Icon",
     title: "You are our #1 priority",
     description:

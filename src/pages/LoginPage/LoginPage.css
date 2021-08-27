@@ -1,11 +1,10 @@
 .main {
-  display: flex;
   flex: 1;
-  height: 869px;
 }
 
 .bg-dark {
   background-color: #12002b;
+  padding: 3rem;
 }
 
 .sign-in-button {
@@ -24,8 +23,7 @@
 .sign-in-content {
   background-color: #fff;
   box-sizing: border-box;
-  margin: 0 auto;
-  margin-top: 3rem;
+  margin: 0 auto;  
   padding: 2rem;
   width: 300px;
   height: 380px;

@@ -1,5 +1,5 @@
 import React from "react";
-import "./profilPage.css";
+import "./ProfilPage.css";
 
 import { accountsData } from "../../localData/accountsData";
 import Accounts from "../../components/Accounts/Accounts";

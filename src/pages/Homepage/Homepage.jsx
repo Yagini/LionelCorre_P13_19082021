@@ -5,8 +5,6 @@ import { featuresData } from "../../localData/featuresData";
 
 import Features from "../../components/Features/Features";
 
-
-
 function Homepage() {
   return (
     <main>
