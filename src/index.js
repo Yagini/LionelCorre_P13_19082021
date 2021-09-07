@@ -4,13 +4,18 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { applyMiddleware, createStore } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension"
+
+//dev tools a delete en prod
+import { composeWithDevTools } from "redux-devtools-extension";
+import thunk from "redux-thunk";
+
 import "./styles/index.css";
 
 import App from "./components/App/App.jsx";
-import rootReducer from "./reducers";
+//import rootReducer from "./reducers";
+import { isAuthenticate } from "../src/redux/reducer"
 
-const store = createStore(rootReducer);
+const store = createStore(isAuthenticate, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <React.StrictMode>

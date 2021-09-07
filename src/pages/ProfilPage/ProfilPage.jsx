@@ -12,7 +12,7 @@ function ProfilPage() {
           Welcome back
           <br />
           Tony Jarvis!
-        </h1>        
+        </h1>
         <button className="edit-button">Edit Name</button>
       </div>
       <h2 className="index-sr-only">Accounts</h2>

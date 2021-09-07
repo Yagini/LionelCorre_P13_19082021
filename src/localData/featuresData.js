@@ -9,7 +9,7 @@ export const featuresData = [
   },
   {
     id: "f-02",
-    src: "../../assets/icon-money.png",
+    src: "../assets/icon-money.png",
     alt: "Money Icon",
     title: "More savings means higher rates",
     description: "The more you save with us, the higher your interest rate will be!",

@@ -1,38 +1,70 @@
 import React, { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
-import { userService } from "../../services/userService";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
+//import { login } from "../../actions/userActions";
+import { userActions } from "../../redux/actions";
 
 import "./LoginPage.css";
 
 function LoginPage() {
-  const [userName, setUsername] = useState("");
+  /*const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+  });
+  
+  const { email, password } = inputs;*/
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleLogin = (event) => {
+  const isAuthenticate = useSelector((state) => state.isAuthenticate);
+  const dispatch = useDispatch();
+  //const location = useLocation();
+
+  /*const handleChange = (event) => {
+    const { name, value } = event.target;
+    setInputs((inputs) => ({ ...inputs, [name]: value }));
+  };*/
+
+  const handleSubmit = (event) => {
     event.preventDefault();
-    userService.login(userName, password);
+    setSubmitted(true);
+
+    dispatch(userActions.login(email, password));
   };
+
+  if (isAuthenticate) {
+    return <Redirect to="/profil" />;
+  }
 
   return (
     <main className="main bg-dark">
       <section className="sign-in-content">
         <FaUserCircle className="sign-in-icon" />
         <h1>Sign In</h1>
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleSubmit}>
           <div className="input-wrapper">
-            <label htmlFor="username">Username</label>
-            <input type="text" id="username" onChange={(event) => setUsername(event.target.value)} value={userName} />
-            <div className="input-username-error"></div>
+            <label htmlFor="email">Username</label>
+            <input
+              type="text"
+              name="email"
+              id="email"
+              onChange={(event) => setEmail(event.target.value)}
+              value={email}
+            />
+            {submitted && !email && <div className="input-username-error">Username is required</div>}
           </div>
           <div className="input-wrapper">
             <label htmlFor="password">Password</label>
             <input
               type="password"
+              name="password"
               id="password"
               onChange={(event) => setPassword(event.target.value)}
               value={password}
             />
-            <div className="input-password-error"></div>
+            {submitted && !password && <div className="input-password-error">Password is required</div>}
           </div>
           <div className="input-remember">
             <label>
