@@ -19,6 +19,9 @@
   padding: 8px;
   width: 100%;
 }
+.sign-in-button:hover {
+  cursor: pointer;
+}
 
 .sign-in-content {
   background-color: #fff;

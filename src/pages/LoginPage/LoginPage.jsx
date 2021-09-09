@@ -2,40 +2,28 @@ import React, { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-//import { login } from "../../actions/userActions";
 import { userActions } from "../../redux/actions";
 
 import "./LoginPage.css";
 
 function LoginPage() {
-  /*const [inputs, setInputs] = useState({
-    email: "",
-    password: "",
-  });
-  
-  const { email, password } = inputs;*/
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const isAuthenticate = useSelector((state) => state.isAuthenticate);
+  const isAuthenticated = useSelector((state) => state.isAuthenticated);
+  console.log(isAuthenticated);
   const dispatch = useDispatch();
-  //const location = useLocation();
-
-  /*const handleChange = (event) => {
-    const { name, value } = event.target;
-    setInputs((inputs) => ({ ...inputs, [name]: value }));
-  };*/
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setSubmitted(true);
-
     dispatch(userActions.login(email, password));
+    console.log("2- submit ", email, password);
   };
 
-  if (isAuthenticate) {
-    return <Redirect to="/profil" />;
+  if (isAuthenticated) {
+    return <Redirect to="/profile" />;
   }
 
   return (
@@ -72,7 +60,7 @@ function LoginPage() {
               Remember me
             </label>
           </div>
-          <input type="submit" value="Sign In" className="sign-in-button" />
+          <input className="sign-in-button" type="submit" value="Sign In" />
         </form>
       </section>
     </main>

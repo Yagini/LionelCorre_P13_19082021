@@ -1,7 +1,7 @@
 export const featuresData = [
   {
     id: "f-01",
-    src: "../assets/icon-chat.png",
+    src: "./assets/icon-chat.png",
     alt: "Chat Icon",
     title: "You are our #1 priority",
     description:
@@ -9,14 +9,14 @@ export const featuresData = [
   },
   {
     id: "f-02",
-    src: "../assets/icon-money.png",
+    src: "assets/icon-money.png",
     alt: "Money Icon",
     title: "More savings means higher rates",
     description: "The more you save with us, the higher your interest rate will be!",
   },
   {
     id: "f-03",
-    src: "../assets/icon-security.png",
+    src: "/assets/icon-security.png",
     alt: "Security Icon",
     title: "Security you can trust",
     description: "We use top of the line encryption to make sure your data and money is always safe.",

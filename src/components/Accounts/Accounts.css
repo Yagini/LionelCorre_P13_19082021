@@ -46,6 +46,7 @@
   margin-top: 1rem;
   padding: 8px;
   width: 100%;
+  border-radius: 5px;
 }
 
 @media (min-width: 720px) {

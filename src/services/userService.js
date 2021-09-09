@@ -2,30 +2,71 @@ import axios from "axios";
 
 export const userService = {
   login,
-  //logout,
-  //getUser,
+  logout,
+  getUser,
 };
 
-const baseURL = "http://locahost:3001/api/v1/user";
+const baseURL = `${process.env.REACT_APP_API_URL}/api/v1/user`;
 
 function login(email, password) {
+  console.log("1 - userService: ", email, password)
   return axios({
     method: "POST",
     url: `${baseURL}/login`,
     data: {
       email,
-      password,      
+      password,
     },
   })
-    .then((user) => {
-      localStorage.setItem("user", JSON.stringify(user))
-      return user;
+    .then((response) => {
+      console.log(response);
+      localStorage.setItem("token", response.data.body.token);      
+      return response.data.body.token;
     })
     .catch((error) => {
       console.error(error);
     });
 }
 
+function logout() {
+  localStorage.removeItem("token");
+}
+
+function getUser() {
+  return axios({
+    method:"GET",
+    url: `${baseURL}/profile`,
+    headers: userToken()
+  })
+  .then((response) => {
+    console.log(response)
+  })
+}
+
+/*function handleResponse(response) {
+  return response.text().then((text) => {
+    const data = text && JSON.parse(text);
+    if (!response.ok) {
+      if (response.status === 401) {
+        logout();
+      }
+      const error = (data && data.message) || response.statusText;
+      return Promise.reject(error);
+    }
+
+    return data;
+  });
+}*/
+
+function userToken() {
+  let token = JSON.parse(localStorage.getItem("token"));
+
+  if (token) {
+    return { Authorization: "Bearer " + token };
+  } else {
+    return {};
+  }
+}
 /*function login(email, password) {
   const request = {
     method: "POST",
@@ -42,9 +83,7 @@ function login(email, password) {
     });
 }
 
-function logout() {
-  localStorage.removeItem("user");
-}
+
 
 function getUser() {
   const request = {
@@ -55,30 +94,9 @@ function getUser() {
   return fetch(`${baseURL}/profile`, request).then(handleResponse);
 }
 
-function handleResponse(response) {
-  return response.text().then((text) => {
-    const data = text && JSON.parse(text);
-    if (!response.ok) {
-      if (response.status === 401) {
-        logout();
-      }
-      const error = (data && data.message) || response.statusText;
-      return Promise.reject(error);
-    }
 
-    return data;
-  });
-}
 
-function getUserToken() {
-  let user = JSON.parse(localStorage.getItem("user"));
 
-  if (user && user.token) {
-    return { Authorization: "Bearer " + user.token };
-  } else {
-    return {};
-  }
-}
 
 /*function login(email, password) {
   return axios({

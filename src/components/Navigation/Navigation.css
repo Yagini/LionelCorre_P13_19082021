@@ -23,6 +23,10 @@
   text-decoration: underline;
 }
 
+.main-nav-name {
+  margin-right: 1rem;
+}
+
 .main-nav-logo {
   display: flex;
   align-items: center;

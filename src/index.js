@@ -13,9 +13,9 @@ import "./styles/index.css";
 
 import App from "./components/App/App.jsx";
 //import rootReducer from "./reducers";
-import { isAuthenticate } from "../src/redux/reducer"
+import { isAuthenticated } from "../src/redux/reducer"
 
-const store = createStore(isAuthenticate, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(isAuthenticated, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <React.StrictMode>
