@@ -13,7 +13,7 @@ import "./styles/index.css";
 
 import App from "./components/App/App.jsx";
 //import rootReducer from "./reducers";
-import { isAuthenticated } from "../src/redux/reducer"
+import { isAuthenticated } from "./_reducers/reducer"
 
 const store = createStore(isAuthenticated, composeWithDevTools(applyMiddleware(thunk)));
 

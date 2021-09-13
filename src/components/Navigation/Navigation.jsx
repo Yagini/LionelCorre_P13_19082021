@@ -6,7 +6,7 @@ import "./Navigation.css";
 
 import Logo from "../../assets/argentBankLogo.png";
 import { useDispatch, useSelector } from "react-redux";
-import { userActions } from "../../redux/actions";
+import { userActions } from "../../_actions/actions";
 
 
 function Navigation() {

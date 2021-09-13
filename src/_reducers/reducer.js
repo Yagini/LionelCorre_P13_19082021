@@ -1,4 +1,4 @@
-import { userConstants } from "./constants";
+import { userConstants } from "../_constants/constants";
 
 let token = JSON.parse(localStorage.getItem("token"));
 

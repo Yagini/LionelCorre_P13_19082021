@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import "./ProfilePage.css";
 
 import { accountsData } from "../../localData/accountsData";
 import Accounts from "../../components/Accounts/Accounts";
-import { useDispatch } from "react-redux";
-import { userActions } from "../../redux/actions";
+//import { useDispatch } from "react-redux";
+//import { userActions } from "../../redux/actions";
 
 function ProfilePage() {
   const [firstName, setFirstName] = useState("");

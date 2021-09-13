@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { userActions } from "../../redux/actions";
+import { userActions } from "../../_actions/actions";
 
 import "./LoginPage.css";
 
