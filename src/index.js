@@ -12,10 +12,10 @@ import thunk from "redux-thunk";
 import "./styles/index.css";
 
 import App from "./components/App/App.jsx";
-//import rootReducer from "./reducers";
-import { isAuthenticated } from "./_reducers/reducer"
+import rootReducer from "../src/_reducers/combineReducers";
 
-const store = createStore(isAuthenticated, composeWithDevTools(applyMiddleware(thunk)));
+
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <React.StrictMode>

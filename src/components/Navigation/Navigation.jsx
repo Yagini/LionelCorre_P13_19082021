@@ -5,16 +5,11 @@ import { FaUserCircle, FaSignOutAlt } from "react-icons/fa";
 import "./Navigation.css";
 
 import Logo from "../../assets/argentBankLogo.png";
-import { useDispatch, useSelector } from "react-redux";
-import { userActions } from "../../_actions/actions";
-
+import { useSelector } from "react-redux";
 
 function Navigation() {
-  const isAuthenticated = useSelector((state) => state.isAuthenticated);
-  const dispatch = useDispatch
-  const handleLogout = () => {       
-    dispatch(userActions.logout());    
-  };
+  const isLoaded = useSelector((state) => state.user.isLoaded);
+  const user = useSelector((state) => state.user.user);
 
   return (
     <nav className="main-nav">
@@ -22,18 +17,18 @@ function Navigation() {
         <img src={Logo} alt="Argent Bank Logo" className="main-nav-logo-image" />
         <h1 className="index-sr-only">Argent-bank</h1>
       </Link>
-      {!isAuthenticated ? (
+      {!isLoaded? (
         <>
-          <Link className="main-nav-item" to="/login">
+          <Link className="main-nav-item main-nav-item-link" to="/login">
             <FaUserCircle className="main-nav-icon" />
             Sign In
           </Link>
         </>
       ) : (
-        <div className="main-nav-item">
+        <div className="main-nav-item ">
           <FaUserCircle className="main-nav-icon" />
-          <p className="main-nav-name">blabla-actif</p>
-          <Link className="main-nav-item" to="/" onClick={handleLogout}>
+          {isLoaded? <p className="main-nav-name">{user.firstName}</p> : <p></p>}
+          <Link className="main-nav-item main-nav-item-link" to="/">
             <FaSignOutAlt className="main-nav-icon" />
             Sign Out
           </Link>

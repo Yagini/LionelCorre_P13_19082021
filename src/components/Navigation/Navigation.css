@@ -19,7 +19,7 @@
   align-items: center;  
 }
 
-.main-nav-item:hover {
+.main-nav-item-link:hover {
   text-decoration: underline;
 }
 

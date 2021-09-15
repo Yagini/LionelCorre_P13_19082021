@@ -4,12 +4,13 @@ export const userService = {
   login,
   logout,
   getUser,
+  editUser
 };
 
 const baseURL = `${process.env.REACT_APP_API_URL}/api/v1/user`;
 
 function login(email, password) {
-  console.log("1 - userService: ", email, password)
+  console.log("1 - userService: ", email, password);
   return axios({
     method: "POST",
     url: `${baseURL}/login`,
@@ -20,7 +21,7 @@ function login(email, password) {
   })
     .then((response) => {
       console.log(response);
-      localStorage.setItem("token", response.data.body.token);      
+      localStorage.setItem("token", response.data.body.token);
       return response.data.body.token;
     })
     .catch((error) => {
@@ -33,14 +34,39 @@ function logout() {
 }
 
 function getUser() {
+  let token = localStorage.getItem("token");
   return axios({
-    method:"GET",
+    method: "POST",
     url: `${baseURL}/profile`,
-    headers: userToken()
+    headers: { Authorization: `Bearer ${token}` },
   })
-  .then((response) => {
-    console.log(response)
+    .then((response) => {
+      console.log("GETUSER: ", response);
+      return response.data.body;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+function editUser(firstName, LastName) {
+  let token = localStorage.getItem("token");
+  return axios({
+    method: "PUT",
+    url: `${baseURL}/profile`,
+    headers: { Authorization: `Bearer ${token}` },
+    data: {
+      firstName,
+      LastName
+    }
   })
+    .then((response) => {
+      console.log("EDITUSER: ", response);
+      return response.data.body;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 /*function handleResponse(response) {
@@ -58,11 +84,11 @@ function getUser() {
   });
 }*/
 
-function userToken() {
-  let token = JSON.parse(localStorage.getItem("token"));
+/*function userToken() {
+  ;
 
-  if (token) {
-    return { Authorization: "Bearer " + token };
+  if (token && token.token) {
+    return { Authorization: "Bearer " + token.token };
   } else {
     return {};
   }

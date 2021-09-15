@@ -4,15 +4,15 @@ import { userConstants } from "../_constants/constants";
 export const userActions = {
   login,
   logout,
-  //getUser,
-  edit,
+  getUser,
+  editUser,
 };
 
 function login(email, password) {
   return (dispatch) => {
     userService.login(email, password).then((token) => {
       dispatch(success(token));
-      console.log("4- dispatch", token);
+      console.log("4- action dispatch", token);
     });
   };
 
@@ -26,22 +26,27 @@ function logout() {
   return { type: userConstants.LOGOUT };
 }
 
-/*function getUser() {
+function getUser() {
   return (dispatch) => {
     userService.getUser().then((user) => dispatch(success(user)));
+    console.log("B - action dispatch");
   };
 
   function success(user) {
     return { type: userConstants.GET_USER, user };
   }
-}*/
+}
 
-function edit(firstName, lastName) {
-  return {
-    type: userConstants.EDIT,
-    firstName,
-    lastName,
+function editUser(firstName, lastName) {
+  return (dispatch) => {
+    userService.editUser(firstName, lastName).then((user) => {
+      dispatch(success(user));
+    });
   };
+
+  function success(user) {
+    return { type: userConstants.EDIT_USER, user }
+  }
 }
 
 /*export const userActions = {

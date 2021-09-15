@@ -11,9 +11,9 @@ function LoginPage() {
   const [password, setPassword] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const isAuthenticated = useSelector((state) => state.isAuthenticated);
-  console.log(isAuthenticated);
-  const dispatch = useDispatch();
+  const isAuth = useSelector((state) => state.authentication.isAuth);
+
+  const dispatch = useDispatch(); 
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -22,8 +22,9 @@ function LoginPage() {
     console.log("2- submit ", email, password);
   };
 
-  if (isAuthenticated) {
-    return <Redirect to="/profile" />;
+  if (isAuth) {
+    dispatch(userActions.getUser());
+    return <Redirect to="/profile" />;    
   }
 
   return (

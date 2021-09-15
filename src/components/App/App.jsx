@@ -19,7 +19,7 @@ function App() {
           <Route exact path="/" component={Homepage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/profile" component={ProfilePage} />
-          <Redirect from="*" to="/" />
+          <Redirect from="*" to="/" />         
         </Switch>
         <Footer />
       </BrowserRouter>

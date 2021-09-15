@@ -2,37 +2,43 @@ import { userConstants } from "../_constants/constants";
 
 let token = JSON.parse(localStorage.getItem("token"));
 
-const initialState = { isAuthenticated: false, token };
+const initialState = { isAuth: false, token };
 
-export const isAuthenticated = (state = initialState, action) => {
+export const authentication = (state = initialState, action) => {
   switch (action.type) {
     case userConstants.LOGIN:
-      console.log("3 - userLogin - Sucess");
+      console.log("3 - Reducer userLogin - Sucess");
       return {
         ...state,
-        isAuthenticated: true,
+        isAuth: true,
         token: action.token,
       };
-
-    case userConstants.LOGOUT:
-      console.log("6 - userLogout");
-      return {
-        
-      };
-
     default:
       return state;
   }
 };
 
-export const user = (state= {}, action) => {
+export const user = (state = {}, action) => {
   switch (action.type) {
-    case userConstants.GET_USER:{
+    case userConstants.GET_USER: {
+      console.log("C - reducer getUser");
       return {
-        user: action.user
-      }
+        isLoaded: true,
+        user: action.user,
+      };
+    }
+    case userConstants.LOGOUT:
+      console.log("6 - userLogout");
+      return {};
+    case userConstants.EDIT_USER: {
+      console.log("reducer editUser");
+      return {
+        ...state,
+        firstName: action.firstname,
+        lastName: action.lastName,
+      };
     }
     default:
-      return state
+      return state;
   }
-}
+};

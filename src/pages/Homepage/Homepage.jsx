@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Homepage.css";
 
 import { featuresData } from "../../localData/featuresData";
 
 import Features from "../../components/Features/Features";
-
+import { useDispatch } from "react-redux";
+import { userActions } from "../../_actions/actions";
 
 function Homepage() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(userActions.logout());
+  }, []);
+
   return (
     <main>
       <div className="hero">
