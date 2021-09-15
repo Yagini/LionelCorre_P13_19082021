@@ -4,11 +4,17 @@ export const userService = {
   login,
   logout,
   getUser,
-  editUser
+  editUser,
 };
 
 const baseURL = `${process.env.REACT_APP_API_URL}/api/v1/user`;
 
+/**
+ * Login functtion for fetch JWToken
+ * @param {string} email the user email
+ * @param {string} password the user password
+ * @returns token
+ */
 function login(email, password) {
   console.log("1 - userService: ", email, password);
   return axios({
@@ -29,10 +35,17 @@ function login(email, password) {
     });
 }
 
+/**
+ * Clean the token when the user disconnect
+ */
 function logout() {
   localStorage.removeItem("token");
 }
 
+/**
+ * Get all information about the user
+ * @returns {object}
+ */
 function getUser() {
   let token = localStorage.getItem("token");
   return axios({
@@ -49,7 +62,13 @@ function getUser() {
     });
 }
 
-function editUser(firstName, LastName) {
+/**
+ * Put the modification of user name in the Api
+ * @param {string} firstName new firstname
+ * @param {string} lastName new lasName
+ * @returns
+ */
+function editUser(firstName, lastName) {
   let token = localStorage.getItem("token");
   return axios({
     method: "PUT",
@@ -57,8 +76,8 @@ function editUser(firstName, LastName) {
     headers: { Authorization: `Bearer ${token}` },
     data: {
       firstName,
-      LastName
-    }
+      lastName,
+    },
   })
     .then((response) => {
       console.log("EDITUSER: ", response);
@@ -68,78 +87,3 @@ function editUser(firstName, LastName) {
       console.error(error);
     });
 }
-
-/*function handleResponse(response) {
-  return response.text().then((text) => {
-    const data = text && JSON.parse(text);
-    if (!response.ok) {
-      if (response.status === 401) {
-        logout();
-      }
-      const error = (data && data.message) || response.statusText;
-      return Promise.reject(error);
-    }
-
-    return data;
-  });
-}*/
-
-/*function userToken() {
-  ;
-
-  if (token && token.token) {
-    return { Authorization: "Bearer " + token.token };
-  } else {
-    return {};
-  }
-}
-/*function login(email, password) {
-  const request = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password }),
-  };
-
-  return fetch(`${baseURL}/login`, request)
-    .then(handleResponse)
-    .then((user) => {
-      localStorage.setItem("user", JSON.stringify(user));
-      console.log(user);
-      return user;
-    });
-}
-
-
-
-function getUser() {
-  const request = {
-    method: "GET",
-    headers: getUserToken(),
-  };
-
-  return fetch(`${baseURL}/profile`, request).then(handleResponse);
-}
-
-
-
-
-
-/*function login(email, password) {
-  return axios({
-    method: "post",
-    url: `${baseURL}/login`,
-    data: {
-      email: email,
-      password: password,
-    },
-  })
-    .then((response) => {
-      console.log(response);
-    })
-    .then((user) => {
-      localStorage.setItem("user", JSON.stringify(user));
-      return user;
-    })
-    .catch((error) => console.log(error));
-}
-console.log("1 " + login())*/

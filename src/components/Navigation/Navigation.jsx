@@ -7,8 +7,11 @@ import "./Navigation.css";
 import Logo from "../../assets/argentBankLogo.png";
 import { useSelector } from "react-redux";
 
-function Navigation() {
-  const isLoaded = useSelector((state) => state.user.isLoaded);
+/**
+ * The navigation check if any user is log or not to manage the display
+ * @returns render
+ */
+function Navigation() {  
   const user = useSelector((state) => state.user.user);
 
   return (
@@ -17,7 +20,7 @@ function Navigation() {
         <img src={Logo} alt="Argent Bank Logo" className="main-nav-logo-image" />
         <h1 className="index-sr-only">Argent-bank</h1>
       </Link>
-      {!isLoaded? (
+      {!user ? (
         <>
           <Link className="main-nav-item main-nav-item-link" to="/login">
             <FaUserCircle className="main-nav-icon" />
@@ -27,7 +30,7 @@ function Navigation() {
       ) : (
         <div className="main-nav-item ">
           <FaUserCircle className="main-nav-icon" />
-          {isLoaded? <p className="main-nav-name">{user.firstName}</p> : <p></p>}
+          <p className="main-nav-name">{user.firstName}</p>
           <Link className="main-nav-item main-nav-item-link" to="/">
             <FaSignOutAlt className="main-nav-icon" />
             Sign Out

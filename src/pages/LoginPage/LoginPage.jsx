@@ -10,8 +10,8 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitted, setSubmitted] = useState(false);
-
-  const isAuth = useSelector((state) => state.authentication.isAuth);
+ 
+  const hasToken = useSelector((state) => state.authentication.token)
 
   const dispatch = useDispatch(); 
 
@@ -22,7 +22,7 @@ function LoginPage() {
     console.log("2- submit ", email, password);
   };
 
-  if (isAuth) {
+  if (hasToken) {
     dispatch(userActions.getUser());
     return <Redirect to="/profile" />;    
   }

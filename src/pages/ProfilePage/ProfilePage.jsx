@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import "./ProfilePage.css";
 
@@ -8,16 +8,20 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { userActions } from "../../_actions/actions";
 
+/**
+ * Is the main page, Users can change is profile name and check are transactions
+ * @returns render
+ */
 function ProfilePage() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [showForm, setShowForm] = useState(false);
 
-  const isLoaded = useSelector((state) => state.user.isLoaded);
   const user = useSelector((state) => state.user.user);
-  console.log(user);
 
   const dispatch = useDispatch();
 
+  // handleSubmit for update a user name on the api with a push
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(userActions.editUser(firstName, lastName));
@@ -29,33 +33,47 @@ function ProfilePage() {
         <h1>
           Welcome back
           <br />
-          {isLoaded ? <span>{`${user.firstName} ${user.lastName}`}</span> : <span></span>}
+          {user ? <span>{`${user.firstName} ${user.lastName}`}</span> : <span></span>}
         </h1>
 
-        <form className="profile-form-block" onSubmit={handleSubmit}>
-          <label htmlFor="firstName"></label>
+        {showForm ? (
+          <form className="profile-form-block" onSubmit={handleSubmit}>
+            <label htmlFor="firstName"></label>
+            <input
+              className="profile-form-input"
+              type="text"
+              id="firstName"
+              name="firstName"
+              placeholder={firstName}
+              onChange={(event) => setFirstName(event.target.value)}
+            />
+            <label htmlFor="lastName"></label>
+            <input
+              className="profile-form-input"
+              type="text"
+              name="lastName"
+              id="lastName"
+              placeholder={lastName}
+              onChange={(event) => setLastName(event.target.value)}
+            />
+            <div className="profile-form-block">
+              <input className="edit-button profile-form-button" type="submit" value="Save" />
+              <input
+                className="edit-button profile-form-button"
+                type="button"
+                value="Cancel"
+                onClick={() => setShowForm(false)}
+              />
+            </div>
+          </form>
+        ) : (
           <input
-            className="profile-form-input"
-            type="text"
-            id="firstName"
-            name="firstName"
-            placeholder={firstName}
-            onChange={(event) => setFirstName(event.target.value)}
+            className="edit-button profile-form-button"
+            type="submit"
+            value="Edit Name"
+            onClick={() => setShowForm(true)}
           />
-          <label htmlFor="lastName"></label>
-          <input
-            className="profile-form-input"
-            type="text"
-            name="lastName"
-            id="lastName"
-            placeholder={lastName}
-            onChange={(event) => setLastName(event.target.value)}
-          />
-          <div className="profile-form-block">
-            <input className="edit-button profile-form-button" type="submit" value="Save" />
-            <input className="edit-button profile-form-button" type="submit" value="Cancel" />
-          </div>
-        </form>
+        )}
       </div>
       <h2 className="index-sr-only">Accounts</h2>
       {accountsData.map((account) => (

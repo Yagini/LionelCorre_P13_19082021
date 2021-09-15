@@ -39,13 +39,13 @@ function getUser() {
 
 function editUser(firstName, lastName) {
   return (dispatch) => {
-    userService.editUser(firstName, lastName).then((user) => {
-      dispatch(success(user));
+    userService.editUser(firstName, lastName).then((firstName, lastName) => {
+      dispatch(success(firstName, lastName));
     });
   };
 
   function success(user) {
-    return { type: userConstants.EDIT_USER, user }
+    return { type: userConstants.EDIT, user }
   }
 }
 
