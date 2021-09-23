@@ -54,20 +54,12 @@ Recommended IDE :
 
     `npm install`
 
-3. Rename: 
-
-    `.env.example`
-
-    in: 
-
-    `.env` 
-
-    and complete the variable with your 
-    
-    `localhost adress`
+3. Rename `.env.example` in  `.env` and complete the variable with your `localhost adress`
 
 4. launch front-end (port 3001 by default):
 
-    `npm start`
+    ```
+    npm start
+    ```
 
 

@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import { applyMiddleware, createStore } from "redux";
 
 //dev tools a delete en prod
-import { composeWithDevTools } from "redux-devtools-extension";
+//import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
 import "./styles/index.css";
@@ -14,7 +14,7 @@ import "./styles/index.css";
 import App from "./components/App/App.jsx";
 import rootReducer from "../src/_reducers/combineReducers";
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <React.StrictMode>
