@@ -71,6 +71,3 @@ Recommended IDE :
     `npm start`
 
 
-
-renom le .env.example en .env et remplir les varibles env localhost
-
