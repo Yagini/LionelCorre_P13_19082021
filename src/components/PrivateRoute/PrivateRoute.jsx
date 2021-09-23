@@ -4,10 +4,10 @@ import { Route, Redirect } from "react-router-dom";
 
 /**
  * Secured the profilePage when user is not logged, redirect to the homepage
- * @param {props} param0 
+ * @param {props} param
  * @returns props
  */
-function PrivateRoute({ component: Component, roles, ...rest }) {
+function PrivateRoute({ component: Component, ...rest }) {
   const hasToken = useSelector((state) => state.authentication.token);
 
   return (

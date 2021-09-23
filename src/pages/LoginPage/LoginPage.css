@@ -56,3 +56,8 @@
   font-size: 1.2rem;
   width: 220px;
 }
+
+.input-error {
+  color: #ff0000;
+  
+}

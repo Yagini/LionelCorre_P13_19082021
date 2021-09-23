@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import "./Features.css";
 
@@ -11,5 +12,12 @@ function Features({ src, alt, title, description }) {
     </div>
   );
 }
+
+Features.propTypes = {
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+};
 
 export default Features;

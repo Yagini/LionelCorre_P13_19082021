@@ -22,7 +22,8 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin: 0;
+  margin: auto;
+  width: 535px;
 }
 
 .profile-form-input {

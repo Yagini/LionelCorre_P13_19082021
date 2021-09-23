@@ -7,16 +7,12 @@ import Features from "../../components/Features/Features";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../_actions/actions";
 
-/**
- * Default page
- * @returns 
- */
 function Homepage() {
   const dispatch = useDispatch();
   // reset the login
   useEffect(() => {
     dispatch(userActions.logout());
-  }, []);
+  }, [dispatch]);
 
   return (
     <main>

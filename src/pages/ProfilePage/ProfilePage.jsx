@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../_actions/actions";
 
 /**
- * Is the main page, Users can change is profile name and check are transactions
+ * Users can change is profile name and check are transactions
  * @returns render
  */
 function ProfilePage() {
@@ -21,7 +21,7 @@ function ProfilePage() {
 
   const dispatch = useDispatch();
 
-  // handleSubmit for update a user name on the api with a push
+  // handleSubmit for update a user name on the api with a put
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(userActions.editUser(firstName, lastName));

@@ -10,13 +10,12 @@ export const userService = {
 const baseURL = `${process.env.REACT_APP_API_URL}/api/v1/user`;
 
 /**
- * Login functtion for fetch JWToken
+ * Login function for fetch JWToken
  * @param {string} email the user email
  * @param {string} password the user password
  * @returns token
  */
 function login(email, password) {
-  console.log("1 - userService: ", email, password);
   return axios({
     method: "POST",
     url: `${baseURL}/login`,
@@ -26,8 +25,7 @@ function login(email, password) {
     },
   })
     .then((response) => {
-      console.log(response);
-      localStorage.setItem("token", response.data.body.token);
+      localStorage.setItem("token", response.data.body.token);      
       return response.data.body.token;
     })
     .catch((error) => {
@@ -36,7 +34,7 @@ function login(email, password) {
 }
 
 /**
- * Clean the token when the user disconnect
+ * Clean localStorage when the user disconnect
  */
 function logout() {
   localStorage.removeItem("token");
@@ -54,7 +52,6 @@ function getUser() {
     headers: { Authorization: `Bearer ${token}` },
   })
     .then((response) => {
-      console.log("GETUSER: ", response);
       return response.data.body;
     })
     .catch((error) => {
@@ -80,7 +77,6 @@ function editUser(firstName, lastName) {
     },
   })
     .then((response) => {
-      console.log("EDITUSER: ", response);
       return response.data.body;
     })
     .catch((error) => {

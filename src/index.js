@@ -14,7 +14,6 @@ import "./styles/index.css";
 import App from "./components/App/App.jsx";
 import rootReducer from "../src/_reducers/combineReducers";
 
-
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(

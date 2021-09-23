@@ -10,21 +10,20 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitted, setSubmitted] = useState(false);
- 
-  const hasToken = useSelector((state) => state.authentication.token)
 
-  const dispatch = useDispatch(); 
+  const hasToken = useSelector((state) => state.authentication.token);
+
+  const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setSubmitted(true);
-    dispatch(userActions.login(email, password));
-    console.log("2- submit ", email, password);
+    dispatch(userActions.login(email, password));    
   };
 
   if (hasToken) {
     dispatch(userActions.getUser());
-    return <Redirect to="/profile" />;    
+    return <Redirect to="/profile" />;
   }
 
   return (
@@ -42,7 +41,7 @@ function LoginPage() {
               onChange={(event) => setEmail(event.target.value)}
               value={email}
             />
-            {submitted && !email && <div className="input-username-error">Username is required</div>}
+            {submitted && !email && <div className="input-error">Username is required</div>}
           </div>
           <div className="input-wrapper">
             <label htmlFor="password">Password</label>
@@ -53,7 +52,7 @@ function LoginPage() {
               onChange={(event) => setPassword(event.target.value)}
               value={password}
             />
-            {submitted && !password && <div className="input-password-error">Password is required</div>}
+            {submitted && !password && <div className="input-error">Password is required</div>}
           </div>
           <div className="input-remember">
             <label>
