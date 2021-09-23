@@ -30,15 +30,21 @@ Recommended IDE :
 
 2. In the local repository, install all dependencies:
     
-    `npm install`
+    ```
+    npm install
+    ```
 
 3. Launch back-end:
 
-    `npm run dev:server`
+    ```
+    npm run dev:server
+    ```
 
 4. Populate database with two users
 
-    `npm run populate-db`
+    ```
+    npm run populate-db
+    ```
 
 5. For more details:
 
@@ -52,7 +58,9 @@ Recommended IDE :
 
 2. In the local repository, install dependencies:
 
-    `npm install`
+    ```
+    npm install
+    ```
 
 3. Rename `.env.example` in  `.env` and complete the variable with your `localhost adress`
 
